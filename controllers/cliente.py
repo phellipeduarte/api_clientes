@@ -1,4 +1,6 @@
 from flask import request
+import datetime
+import json
 from flask_restplus import Resource, fields
 
 from models.cliente import ClienteModel
@@ -62,3 +64,13 @@ class ClienteList(Resource):
             ),
             200,
         )
+
+    @cliente_ns.expect(item)
+    @cliente_ns.doc("Criando um item")
+    def post(self):
+        cliente_json = request.get_json()
+        cliente_data = cliente_schema.load(cliente_json)
+
+        cliente_data.save_cliente_to_db()
+
+        return cliente_schema.dump(cliente_data), 201
