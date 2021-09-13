@@ -2,6 +2,7 @@ from flask import request
 from flask_restplus import Resource, fields
 
 from models.cliente import ClienteModel
+from schemas import cliente
 from schemas.cliente import ClienteSchema
 
 from server.instance import server
@@ -50,6 +51,22 @@ class Cliente(Resource):
             ),
             404,
         )
+
+    @cliente_ns.expect(item)
+    def put(self, id):
+        cliente_data = ClienteModel.find_by_id(id)
+
+        if cliente_data:
+            cliente_json = request.get_json()
+
+            cliente_data.nome = cliente_json["nome"]
+            cliente_data.razao_social = cliente_json["razao_social"]
+            cliente_data.cnpj = cliente_json["cnpj"]
+            cliente_data.data_inclusao = cliente_json["data_inclusao"]
+
+            cliente_data.save_cliente_to_db()
+            return resposta_padrao(200, f"Cliente atualizado com sucesso", "null"), 200
+        return resposta_padrao(404, CLIENTE_NAO_ENCONTRADO, "Not found"), 404
 
     def delete(self, id):
         cliente_data = ClienteModel.find_by_id(id)
