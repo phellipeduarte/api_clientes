@@ -7,8 +7,8 @@ class ClienteModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(80), nullable=False)
     razao_social = db.Column(db.String(150), nullable=False)
-    cnpj = db.Colunmn(db.String(14), nullable=False)
-    data_inclusao = db.Column(db.Datetime, nullable=False)
+    cnpj = db.Column(db.String(14), nullable=False)
+    data_inclusao = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, nome, razao_social, cnpj, data_inclusao):
         self.nome = nome
@@ -28,7 +28,7 @@ class ClienteModel(db.Model):
         }
 
     @classmethod
-    def find_by_id(cls, title):
+    def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
 
     @classmethod
