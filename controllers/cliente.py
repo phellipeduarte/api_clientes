@@ -51,6 +51,14 @@ class Cliente(Resource):
             404,
         )
 
+    def delete(self, id):
+        cliente_data = ClienteModel.find_by_id(id)
+        if cliente_data:
+            cliente_data.delete_cliente_from_db()
+            return resposta_padrao(204, "Cliente deletado com sucesso", "null"), 204
+
+        return resposta_padrao(404, CLIENTE_NAO_ENCONTRADO, "Not found"), 404
+
 
 class ClienteList(Resource):
     def get(self):
@@ -71,10 +79,10 @@ class ClienteList(Resource):
 
         cliente_data.save_cliente_to_db()
 
-        return {
+        return (
             resposta_padrao(
                 201,
                 f"Cliente criado com sucesso: {cliente_schema.dump(cliente_data)}",
                 "null",
             )
-        }, 201
+        ), 201
