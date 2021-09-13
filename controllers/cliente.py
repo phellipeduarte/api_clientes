@@ -1,6 +1,4 @@
 from flask import request
-import datetime
-import json
 from flask_restplus import Resource, fields
 
 from models.cliente import ClienteModel
@@ -73,4 +71,10 @@ class ClienteList(Resource):
 
         cliente_data.save_cliente_to_db()
 
-        return cliente_schema.dump(cliente_data), 201
+        return {
+            resposta_padrao(
+                201,
+                f"Cliente criado com sucesso: {cliente_schema.dump(cliente_data)}",
+                "null",
+            )
+        }, 201
