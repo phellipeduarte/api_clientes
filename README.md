@@ -10,6 +10,17 @@ API REST que acessa um banco PostgreSQL e cria, lista, atualiza e deleta cliente
 
 ---
 
+## Imagens:
+
+![Imagem de exemplo da documentação](https://user-images.githubusercontent.com/67296380/133320029-8f7d10bb-db6c-445a-9f98-3e90bcc99464.png)
+<div align="center">
+  
+*Documentação da API com o Swagger*
+  
+</div>
+
+---
+
 ## Como rodar o projeto?
 
 1. Instale o [python](https://www.python.org/downloads/)
