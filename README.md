@@ -28,8 +28,6 @@ API REST que acessa um banco PostgreSQL e cria, lista, atualiza e deleta cliente
 2. Crie um ambiente virtual
 ```
 python -m venv nome_do_ambiente
-
-venv\Scripts\activate
 ```
 
 3. Ative o ambiente virtual
